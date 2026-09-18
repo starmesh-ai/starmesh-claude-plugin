@@ -1,0 +1,37 @@
+---
+name: theme-lens
+description: Internal lookup - finds every mention of one topic across all conversations, with who said it and the revenue behind it. Called by theme-aggregation, voice-of-customer and pricing-intel. Not used directly.
+---
+
+# Theme lens
+
+One topic, everywhere. Other skills call this.
+
+Load `starmesh-core` first.
+
+## Today (no shared taxonomy yet)
+1. `search_transcripts(text)` → semantic matches with quotes and citations
+2. `query_table` on the relevant primitive table for structured hits
+3. Join back to `crm_deals` for amounts via the file→deal links
+4. If step 2 is empty, keep the search hits — that is the answer, not a miss.
+   If step 1 is empty too, say you searched both the table and the transcripts.
+
+Use each hit's own `citation_url` / `(source: ...)` on that `[Citation N]` line.
+Never attach Citation N's URL to a different chunk. Skip `file_id`s that start
+with `Table:` — they have no transcript page.
+
+## Once the taxonomy exists
+`get_themes(window, filters)` replaces steps 1-2 and returns proper counts.
+
+## Returns
+- Every mention, with quote and citation
+- How many distinct accounts, not just how many mentions
+- Revenue attached to those accounts
+- Trend over time
+
+## The warning to always give
+Without the shared tag list, matching is by wording. "Integration issues" and
+"data import failures" won't group. **Counts are a floor, not a total** — say
+this every time, in the answer.
+
+Budget: 10 tool calls.
