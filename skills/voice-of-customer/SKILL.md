@@ -13,7 +13,7 @@ Load `starmesh-core`, then `theme-lens`.
 ## Method
 1. `list_tables()` → find the feature request table; note it's email-sourced
 2. `aggregate_table` grouped by request → frequency
-3. `search_transcripts` for the same asks **in calls**, which the extractor
+3. `search_whole_book` for the same asks **in calls** ("not indexed" → `find_in_calls` on the relevant deals' file_ids),, which the extractor
    missed — this is where most of it lives
 4. Merge by hand, show the merges
 5. Join to accounts and revenue

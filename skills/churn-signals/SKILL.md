@@ -34,7 +34,7 @@ CS calls often have no deal attached, so `account-lens` can't see them. Say so.
 Headline: how many accounts show drift, how many show expansion.
 Table: account, signals fired, last contact, ARR if known.
 Then per top account: 2-3 quotes with citation urls. If an account's
-primitive tables are empty, `search_transcripts` that account's deals
+primitive tables are empty, `find_in_calls` on that account's deals' file_ids
 before ranking it as quiet.
 
 Budget: 25 tool calls.

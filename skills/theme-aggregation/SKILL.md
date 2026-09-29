@@ -14,7 +14,7 @@ Load `starmesh-core`, then `theme-lens`.
 1. `list_tables()` → find the topics primitive table
 2. `aggregate_table` on it grouped by topic → raw frequency
 3. Merge obvious duplicates **by hand and show what you merged**
-4. `search_transcripts` per theme for quotes and to catch wording the tags
+4. `search_whole_book` per theme ("not indexed" → `find_in_calls` on the relevant deals' file_ids) for quotes and to catch wording the tags
    missed. If the topics table is empty or "other"-only, search is the
    answer — don't report "no themes"
 5. Join to deals for revenue behind each theme

@@ -21,7 +21,8 @@ when competitor X shows up?"
    for: objection counts and types, stakeholder count, next-step rate,
    competitor mentions, risk language
 4. Compare the two. Report the differences that are actually large.
-5. `search_transcripts` for quotes illustrating the top 2-3 differences.
+5. `find_in_calls` on the compared deals' file_ids for quotes illustrating the
+   top 2-3 differences.
    Empty primitive aggregates still get a transcript search before you
    conclude that side has no objections / competitors / next steps
 

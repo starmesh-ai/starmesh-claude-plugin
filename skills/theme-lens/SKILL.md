@@ -10,7 +10,7 @@ One topic, everywhere. Other skills call this.
 Load `starmesh-core` first.
 
 ## Today (no shared taxonomy yet)
-1. `search_transcripts(text)` → semantic matches with quotes and citations
+1. `search_whole_book(question)` → semantic matches with quotes and citations ("not indexed" → `find_in_calls` on the relevant deals' file_ids)
 2. `query_table` on the relevant primitive table for structured hits
 3. Join back to `crm_deals` for amounts via the file→deal links
 4. If step 2 is empty, keep the search hits — that is the answer, not a miss.

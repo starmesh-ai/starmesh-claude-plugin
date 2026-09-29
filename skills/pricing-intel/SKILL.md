@@ -19,7 +19,7 @@ discount pressure getting worse?"
    frequency
 3. Join to deals: win rate when each competitor is present vs overall
 4. `aggregate_table` on the pricing/discount tables by month → is pressure rising
-5. `search_transcripts` for quotes on the top findings. If a primitive table
+5. `find_in_calls` on the deals behind the top findings for quotes. If a primitive table
    is empty, still search — missing tags are not missing talk
 
 ## Refuse

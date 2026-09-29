@@ -14,8 +14,8 @@ Load `starmesh-core`.
 There's no support source. Point at the gap.
 
 ## Partial today, if asked to try
-Product problems do get raised on sales and CS calls. `search_transcripts` for
-bug and problem language will find some — but say clearly this is a fraction of
+Product problems do get raised on sales and CS calls. `search_whole_book` for
+bug and problem language ("not indexed" → `find_in_calls` on the relevant deals' file_ids) will find some — but say clearly this is a fraction of
 what support actually sees, with no severity and no resolution state.
 
 Also: **Slack is already connected.** If support conversations happen there,

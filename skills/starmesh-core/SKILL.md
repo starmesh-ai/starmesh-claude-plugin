@@ -39,11 +39,12 @@ was attached to a different fact.
   invent a quote to go with it
 
 **Quote citations** back what was SAID.
-- Live on the item: `evidence[].citation_url` from `get_transcript`, or
+- Live on the item: `evidence[].citation_url` from `get_transcript`,
+  `passages[].citation_url` from `find_in_calls`, or
   `citations[].citation_url` / the `(source: ...)` on that `[Citation N]` line
-  from `search_transcripts`
-- The quote in the answer must be the same `evidence_text` / `chunk_text` that
-  URL was minted for. Citation 3's URL never backs Citation 7's words
+  from `search_whole_book`
+- The quote in the answer must come from the same `evidence_text` / `passage` /
+  `chunk_text` that URL was minted for. Citation 3's URL never backs Citation 7's words
 - Never put `#row-N` on a quote URL
 - Skip items whose `file_id` starts with `Table:` — those are structured rows
   in the vector store, not a transcript, and have no source document
@@ -73,11 +74,11 @@ yet. Fetch unstructured content:
 
 1. `list_transcripts` and `list_emails` for the resolved deal (or each deal
    under the account)
-2. `get_transcript(file_id)` on the most relevant files — read `content` even
-   when `evidence` is empty; quote from `content` only after you have a quote
-   citation for that span (or search, which mints one)
-3. `search_transcripts(text, filters={"deal_id": ...})` using the user's actual
-   phrasing (and obvious variants)
+2. `find_in_calls(file_ids, keywords)` on those file_ids — see §7 for keywords
+3. `get_transcript(file_id, start_line=...)` to read around a passage, or on the
+   most relevant files when you need the whole conversation. `content` is paged
+   (`next_start_line`); quote from `content` only after you have a quote
+   citation for that span (a `find_in_calls` passage mints one)
 
 Then answer from those quotes. If tables *and* transcripts are empty, say you
 searched both, name what you searched, and stop. That is a refusal. "Not in
@@ -86,13 +87,13 @@ the objections table" is not.
 **Follow-ups after a table answer must go to transcripts.**
 When the user asks for specifics after a structured answer — what was said,
 the quote, who raised it, which call, a name, a date, a competitor, an
-objection in their own words — call `get_transcript` and/or `search_transcripts`
+objection in their own words — call `find_in_calls` and/or `get_transcript`
 before answering. Do not rephrase the previous table. Primitive fields
 (`objection_severity`, `proposed_action`, topic tags) are labels, not quotes.
 
 **Reserve budget.** Keep at least 3 tool calls for this fallback. If tables
 already used the budget, say so and still make the one most useful
-`search_transcripts` or `get_transcript` call rather than answering from memory.
+`find_in_calls` call rather than answering from memory.
 
 ## 6. Primitive verdict fields are as-of-date, not current
 Fields like `objection_severity`, `resolution_rate`, `proposed_action` were
@@ -121,3 +122,14 @@ is not.
 Each skill states a max tool-call count. If you hit it, report what you have and
 say what you skipped. Do not skip §5 to stay under budget if the user asked
 what was said.
+
+## 7. Finding what was said: `find_in_calls` vs `search_whole_book`
+- Known deal or account → `find_in_calls`. Unknown deal, book-wide question → `search_whole_book`.
+- `find_in_calls` needs file_ids: `list_transcripts` / `list_emails` first. Pass up to 20 at once.
+- `keywords` = 3-6 short words or two-word terms plus synonyms, never a sentence.
+  Good: `["retry", "call back", "missed", "voicemail", "attempts"]`.
+  Bad: `["what did they say about retrying missed callbacks"]`
+- No passages → retry once with different words before saying it never came up.
+  Even then say "not found with these words", not "not discussed".
+- `search_whole_book` only covers indexed deals. "Not indexed" error → switch to
+  `find_in_calls`; don't retry `search_whole_book`.

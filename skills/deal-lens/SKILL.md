@@ -14,10 +14,10 @@ Load `starmesh-core` first.
 2. `get_deal_record(deal_id)` → deal, account, owner, contacts
 3. `list_transcripts(deal_id)` and `list_emails(deal_id)` → file ids + link confidence
 4. `get_transcript(file_id)` for the most recent 3-5 → evidence quotes and
-   extracted signals. If `evidence` is empty, still use `content` and
-   `search_transcripts` for the user's question — empty primitives ≠ no conversation
+   extracted signals. If `evidence` is empty, still `find_in_calls` those file_ids
+   for the user's question — empty primitives ≠ no conversation
 5. Optional: `query_table` on a primitive table filtered by those file_ids for
-   one signal type across every call. Zero rows → `search_transcripts`, don't stop
+   one signal type across every call. Zero rows → `find_in_calls`, don't stop
 
 ## Returns
 - CRM state: stage, amount, close date, owner, age
