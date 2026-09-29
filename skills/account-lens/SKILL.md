@@ -15,8 +15,8 @@ Load `starmesh-core` first.
 3. For each deal: `list_transcripts` + `list_emails`
 4. `get_transcript` on the most recent few across all of them. Empty `evidence`
    still means read `content` / search — don't treat "no primitive rows" as silence
-5. `search_transcripts(text, filters={"deal_id": ...})` for specific themes, and
-   whenever a primitive `query_table` came back empty or the user asks what was said
+5. `find_in_calls(file_ids, keywords)` across those deals' file_ids for specific
+   themes, and whenever a primitive `query_table` came back empty or the user asks what was said
 
 ## Returns
 - Deals: open, won, lost, with amounts

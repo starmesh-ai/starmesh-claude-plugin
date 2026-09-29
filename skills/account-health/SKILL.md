@@ -39,6 +39,6 @@ Every spoken claim gets that quote's own citation url; CRM facts get the query
 citation from that tool result. Don't smooth over gaps — "nothing since March"
 is a finding, not a blank. If primitives are empty, still pull transcripts
 before saying the account is quiet. Follow-ups asking what someone said must
-call `get_transcript` / `search_transcripts`, not rephrase the earlier table.
+call `find_in_calls` / `get_transcript`, not rephrase the earlier table.
 
 Budget: 20 tool calls.

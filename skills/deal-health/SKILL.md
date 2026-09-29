@@ -23,7 +23,7 @@ Not: win probability (that's a model), or forecast accuracy.
    - **Stakeholder breadth** — one champion, or several people engaged
    - **Direction** — comparing the last two calls, better or worse
 3. Quote the specific moment for anything you assert. If a check's primitive
-   table is empty, open the linked transcripts/`search_transcripts` before
+   table is empty, `find_in_calls` on the linked file_ids before
    concluding that check is clean. Table-empty ≠ "no objection / no commitment"
 
 ## Refuse
