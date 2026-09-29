@@ -8,7 +8,7 @@ description: Pipeline against quota, and how much of it is shaky. Use for "do we
 **Status: half works.** Risk works today. Coverage needs `ref_targets` (quotas),
 which don't exist.
 
-Load `starmesh-core`.
+Load `starmesh-core` in the same turn as your first data calls if it isn't loaded yet — don't wait on it.
 
 ## Coverage — refuse without quotas
 Coverage = open pipeline ÷ quota. There is no quota table.

@@ -35,8 +35,8 @@ pastes the team MCP token only into the Starmesh login page.
 
 ## After it works
 
-Load `starmesh-core` before any analysis skill. First tool call should be
-`find_deal` or `find_account`, never a guessed ID.
+Load `starmesh-core` together with any analysis skill (same turn). First data
+call should be `find_deal` or `find_account`, never a guessed ID.
 
 If authentication still fails, say the MCP is unreachable and stop. Do not
 invent deals, quotes, or citation URLs.

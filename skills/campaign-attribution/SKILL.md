@@ -8,7 +8,7 @@ description: Which marketing campaigns produce real pipeline and closed revenue.
 **Status: blocked.** No marketing connector exists. There is no campaign, lead,
 or touch object anywhere in the data.
 
-Load `starmesh-core`.
+Load `starmesh-core` in the same turn as your first data calls if it isn't loaded yet — don't wait on it.
 
 ## Refuse, and say this
 Nothing connects campaigns to deals. If CRM carries a `lead_source` field, you

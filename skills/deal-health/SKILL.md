@@ -7,7 +7,7 @@ description: Assess whether a specific deal is real and moving - open commitment
 
 **Status: works today.** No missing dependencies.
 
-Load `starmesh-core`, then `deal-lens`.
+Load `starmesh-core` and `deal-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Answers
 "How's the Acme deal?" · "Is this deal actually moving?" · "What's blocking it?"

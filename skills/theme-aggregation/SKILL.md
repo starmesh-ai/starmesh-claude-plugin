@@ -8,7 +8,7 @@ description: What customers are collectively saying, grouped into themes with co
 **Status: partial, and it fails quietly.** Topics are free text today. "Integration
 issues" and "data import failures" never group. Counts come out low with no error.
 
-Load `starmesh-core`, then `theme-lens`.
+Load `starmesh-core` and `theme-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Method today
 1. `list_tables()` → find the topics primitive table

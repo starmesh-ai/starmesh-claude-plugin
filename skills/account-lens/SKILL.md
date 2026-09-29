@@ -7,13 +7,16 @@ description: Internal lookup - gathers everything about one account across all t
 
 One account, whole picture. Other skills call this.
 
-Load `starmesh-core` first.
+Load `starmesh-core` in the same turn as your first data calls if it isn't loaded yet — don't wait on it.
 
 ## Steps
 1. `find_account(query)` → account_id
-2. `query_table("crm_deals", filters={"account_id": ...})` → every deal, open and closed
-3. For each deal: `list_transcripts` + `list_emails`
-4. `get_transcript` on the most recent few across all of them. Empty `evidence`
+2. `get_account_context(account_id)` → in one call: the account, every deal
+   (open first), linked calls/emails for the first 3 deals (`max_deals` up
+   to 5), and evidence from the 3 newest files (`max_files` up to 5)
+3. More than 5 deals: `get_deal_context(deal_id, max_files=2)` for the rest,
+   all in the same turn so they run in parallel
+4. `get_transcript` only for a file those didn't read. Empty `evidence`
    still means read `content` / search — don't treat "no primitive rows" as silence
 5. `find_in_calls(file_ids, keywords)` across those deals' file_ids for specific
    themes, and whenever a primitive `query_table` came back empty or the user asks what was said

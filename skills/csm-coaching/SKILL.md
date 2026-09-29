@@ -8,7 +8,7 @@ description: How a CSM is performing - proactive contact, issue resolution, rene
 **Status: blocked.** Two gaps: speaker resolution, and no way to tell a CS call
 from a sales call.
 
-Load `starmesh-core`, then `person-lens`.
+Load `starmesh-core` and `person-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Refuse, and say this
 Calls are classified internal or external — not sales, CS, support or product.

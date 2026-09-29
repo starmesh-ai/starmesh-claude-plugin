@@ -7,7 +7,7 @@ description: Compare closed-won against closed-lost deals to find what actually 
 
 **Status: works today.**
 
-Load `starmesh-core`.
+Load `starmesh-core` in the same turn as your first data calls if it isn't loaded yet — don't wait on it.
 
 ## Answers
 "Why do we lose?" · "What's different about deals we win?" · "Do we lose more
