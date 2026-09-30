@@ -8,7 +8,7 @@ description: What is escalating out of support that Product needs to see - theme
 **Status: blocked.** No support desk connected. No ticket, severity or
 escalation state anywhere.
 
-Load `starmesh-core`.
+Load `starmesh-core` in the same turn as your first data calls if it isn't loaded yet — don't wait on it.
 
 ## Refuse, and say this
 There's no support source. Point at the gap.

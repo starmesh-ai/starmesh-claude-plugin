@@ -8,7 +8,7 @@ description: How a specific launch or feature landed - what customers said befor
 **Status: blocked.** No `ref_launches` table. Nothing records what shipped or
 when, so there's no before/after to compare against.
 
-Load `starmesh-core`, then `theme-lens`.
+Load `starmesh-core` and `theme-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Refuse, and say this
 There's no launch date. "Recently" is not a window, and picking one yourself

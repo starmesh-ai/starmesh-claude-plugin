@@ -1,15 +1,34 @@
 ---
 name: starmesh-core
-description: Shared rules for every Starmesh analysis skill - entity resolution, citation kinds (never mix quote URLs with query URLs), and falling through to transcripts when tables are empty or the user asks for specifics. Load this before any other starmesh skill. Not used on its own.
+description: Shared rules for every Starmesh analysis skill - entity resolution, citation kinds (never mix quote URLs with query URLs), and falling through to transcripts when tables are empty or the user asks for specifics. Load it in the same turn as the analysis skill (not before it). Not used on its own.
 ---
 
 # Starmesh analysis — shared rules
 
-Every Starmesh skill follows these. Read before anything else.
+Every Starmesh skill follows these.
+
+## 0. Speed — the user waits on every round trip
+- Calls that don't depend on each other go in the same turn: they run in
+  parallel. Load skills in the same turn as the first data calls.
+- Use the one-call tools: `find_deal(query, include_context=true)` resolves
+  and reads a deal at once; `get_deal_context(deal_id)` for a known deal;
+  `get_account_context(account_id)` for an account.
+- CRM tables can be named directly (`crm_deals`, `crm_accounts`,
+  `crm_contacts`, `crm_users`, `crm_meetings`) — skip `list_tables` /
+  `get_table_schema` unless a name or column is actually unknown.
+- Stop calling tools once you can answer what was asked.
 
 ## 1. Resolve the entity first
 Never guess an ID from a name. `find_deal("Acme")` or `find_account("Acme")`
-first. If more than one matches, ask which — don't pick.
+first. If more than one matches, ask which — don't pick. An id you were
+given outright (the user's message, or the chat's `<dashboard_scope>`) is
+already resolved — use it, don't look it up again.
+
+For one deal, `get_deal_context(deal_id)` returns the CRM record, linked
+calls and emails, and recent evidence in a single call (`find_deal(...,
+include_context=true)` returns it with the match). For one account,
+`get_account_context(account_id)`. Prefer them to walking `get_deal_record` →
+`list_transcripts` → `list_emails` → `get_transcript`.
 
 ## 2. Never add up rows by hand
 Use `aggregate_table`. It dedupes and computes in SQL.
@@ -74,7 +93,7 @@ yet. Fetch unstructured content:
 
 1. `list_transcripts` and `list_emails` for the resolved deal (or each deal
    under the account)
-2. `find_in_calls(file_ids, keywords)` on those file_ids — see §7 for keywords
+2. `find_in_calls(file_ids, keywords)` on those file_ids — see §10 for keywords
 3. `get_transcript(file_id, start_line=...)` to read around a passage, or on the
    most relevant files when you need the whole conversation. `content` is paged
    (`next_start_line`); quote from `content` only after you have a quote
@@ -100,6 +119,11 @@ Fields like `objection_severity`, `resolution_rate`, `proposed_action` were
 computed when the call was processed, from what was known *then*. Report them as
 "as of <call date>". Never as today's state.
 
+**Check dates against the deal.** If a call or email is dated after the deal's
+`close_date` on a closed deal, say so plainly ("this call is dated two months
+after the deal closed lost") and don't present it as what led to the outcome —
+either the link or a date is wrong. Same for a call before the deal was created.
+
 ## 7. Refuse rather than guess
 - Metric has no definition in `_metrics/` → say so, don't invent one
 - Required table missing → name it, stop — unless the question is about what
@@ -123,7 +147,7 @@ Each skill states a max tool-call count. If you hit it, report what you have and
 say what you skipped. Do not skip §5 to stay under budget if the user asked
 what was said.
 
-## 7. Finding what was said: `find_in_calls` vs `search_whole_book`
+## 10. Finding what was said: `find_in_calls` vs `search_whole_book`
 - Known deal or account → `find_in_calls`. Unknown deal, book-wide question → `search_whole_book`.
 - `find_in_calls` needs file_ids: `list_transcripts` / `list_emails` first. Pass up to 20 at once.
 - `keywords` = 3-6 short words or two-word terms plus synonyms, never a sentence.

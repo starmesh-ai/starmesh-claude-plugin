@@ -11,7 +11,7 @@ One rep or CSM. Other skills call this.
 per-call behaviour numbers can't be attributed to a person. Until then, this
 skill refuses and says why.
 
-Load `starmesh-core` first.
+Load `starmesh-core` in the same turn as your first data calls if it isn't loaded yet — don't wait on it.
 
 ## What it will do
 1. `query_table("crm_users", ...)` → resolve the person

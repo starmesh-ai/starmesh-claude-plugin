@@ -7,7 +7,7 @@ description: How a rep is performing and what to work on - talk ratio, discovery
 
 **Status: partial.** Deal-level works. Call-behaviour needs speaker resolution.
 
-Load `starmesh-core`, then `person-lens`.
+Load `starmesh-core` and `person-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Works today — deal level
 1. `aggregate_table("crm_deals", group_by=["owner_id"])` — book size, win rate,

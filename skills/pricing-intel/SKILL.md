@@ -7,7 +7,7 @@ description: What customers say about price, discounting and competitors - which
 
 **Status: works today.** Best early proof of the whole setup.
 
-Load `starmesh-core`, then `theme-lens`.
+Load `starmesh-core` and `theme-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Answers
 "What are we hearing about pricing?" · "Who do we come up against?" · "Is

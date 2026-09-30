@@ -7,7 +7,7 @@ description: The story of one account - what's happened, what changed, what's op
 
 **Status: works, gets better as other pieces land.**
 
-Load `starmesh-core`, then `account-lens`.
+Load `starmesh-core` and `account-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Answers
 "How's Acme doing?" · "Brief me before my call" · "What's the state of this

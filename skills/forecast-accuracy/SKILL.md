@@ -9,7 +9,7 @@ description: Scores past forecasts against what actually happened - by rep and b
 and close date. Nothing today records what a deal looked like last month, so
 there is no stored forecast to score.
 
-Load `starmesh-core`.
+Load `starmesh-core` in the same turn as your first data calls if it isn't loaded yet — don't wait on it.
 
 ## Refuse, and say exactly this
 There's no history table. Current-state CRM cannot answer this — a deal whose

@@ -7,7 +7,7 @@ description: Internal lookup - finds every mention of one topic across all conve
 
 One topic, everywhere. Other skills call this.
 
-Load `starmesh-core` first.
+Load `starmesh-core` in the same turn as your first data calls if it isn't loaded yet — don't wait on it.
 
 ## Today (no shared taxonomy yet)
 1. `search_whole_book(question)` → semantic matches with quotes and citations ("not indexed" → `find_in_calls` on the relevant deals' file_ids)

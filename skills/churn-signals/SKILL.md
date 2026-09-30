@@ -7,7 +7,7 @@ description: Which accounts are drifting toward churn and which are opening up f
 
 **Status: partial.** Signals work. Timing doesn't — no renewal dates.
 
-Load `starmesh-core`, then `account-lens`.
+Load `starmesh-core` and `account-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Method
 For each account, gather and weigh in the answer — not in a score:

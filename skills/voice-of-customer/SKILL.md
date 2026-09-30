@@ -8,7 +8,7 @@ description: What customers are asking for, grouped by request with how many ask
 **Status: partial.** Feature requests are extracted from **email only** today,
 not calls. So most of the signal is missing.
 
-Load `starmesh-core`, then `theme-lens`.
+Load `starmesh-core` and `theme-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Method
 1. `list_tables()` → find the feature request table; note it's email-sourced
