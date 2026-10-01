@@ -20,7 +20,9 @@ you used it.
 
 ## Once ref_launches exists
 1. The launch date and name from `ref_launches`
-2. Claims tagged to that feature, in the window before and the window after
+2. Claims tagged to that feature, in the window before and the window after —
+   count with `count_mentions(side="buyer")` over the deals in each window,
+   quote with `find_in_calls`; never count from passages
 3. Split: mentioned by people who used it vs people who only heard about it
 4. Sentiment direction, and what specifically they objected to or liked
 5. Whether it showed up in any won or lost deal reasoning

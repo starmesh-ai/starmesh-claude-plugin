@@ -30,9 +30,30 @@ include_context=true)` returns it with the match). For one account,
 `get_account_context(account_id)`. Prefer them to walking `get_deal_record` →
 `list_transcripts` → `list_emails` → `get_transcript`.
 
-## 2. Never add up rows by hand
+## 2. Never add up rows by hand, or count from text
 Use `aggregate_table`. It dedupes and computes in SQL.
 `query_table` is for looking at rows, never for totals.
+
+Counts, sums and times that come from transcript or email text are code-tool
+output, never your own reading of passages (`find_in_calls` shows at most 15):
+
+| Need | Tool |
+|---|---|
+| How many deals mention X, who raised it | `count_mentions(terms, deal_ids, side)` |
+| Dollar amounts, discounts, quote-vs-counter gaps | `price_points(deal_ids)` |
+| Talk ratio, question rate | `talk_share(file_ids)` |
+| Days since last touch, gaps, reply times | `engagement_cadence(deal_ids)` |
+
+The tool counts; you label and judge. Quote with `find_in_calls`.
+
+- No term list to count (e.g. "which products", "which competitors")? Don't
+  refuse for lack of a catalog. Find candidate names in the calls first —
+  `search_whole_book`, or if it errors, `find_in_calls` / `get_transcript` on 2-3
+  of the deals' files — then `count_mentions` them. Skip generic words that
+  match everyday talk ("voice", "reviews"). Only ask the user for names after
+  trying that.
+- `price_points` output is large: call it for about 3 deals at a time, in the
+  same turn so the calls run in parallel, instead of one call for every deal.
 
 ## 3. CRM rows are duplicated 2x
 `crm_deals`, `crm_accounts`, `crm_contacts`, `crm_users`, `crm_meetings`,

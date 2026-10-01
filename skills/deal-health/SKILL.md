@@ -15,11 +15,13 @@ Load `starmesh-core` and `deal-lens` together in one turn (skip any already load
 Not: win probability (that's a model), or forecast accuracy.
 
 ## Method
-1. `deal-lens` for the deal
+1. `deal-lens` for the deal, and `engagement_cadence([deal_id])` in the same turn
 2. Check five things, each with evidence:
    - **Commitments** — next steps agreed, any past their date
    - **Objections** — raised and not resolved, as of their call date
-   - **Contact gap** — days since the last call or email
+   - **Contact gap** — `engagement_cadence([deal_id])`: `days_since_last`,
+     `max_gap_days`, touches in the last 30/90 days, median reply hours each
+     way. Report its numbers; never work them out from dates
    - **Stakeholder breadth** — one champion, or several people engaged
    - **Direction** — comparing the last two calls, better or worse
 3. Quote the specific moment for anything you assert. If a check's primitive

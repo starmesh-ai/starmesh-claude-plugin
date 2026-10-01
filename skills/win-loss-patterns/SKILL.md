@@ -19,7 +19,9 @@ when competitor X shows up?"
 2. Build two cohorts by stage filter, get deal_ids for each
 3. `aggregate_table` on each primitive table, filtered to each cohort's files,
    for: objection counts and types, stakeholder count, next-step rate,
-   competitor mentions, risk language
+   risk language. Competitor presence: `count_mentions` per cohort's
+   deal_ids (side="buyer"). Discounts and counters: `price_points` per cohort's
+   deal_ids — every deal with calls, not a sample
 4. Compare the two. Report the differences that are actually large.
 5. `find_in_calls` on the compared deals' file_ids for quotes illustrating the
    top 2-3 differences.
