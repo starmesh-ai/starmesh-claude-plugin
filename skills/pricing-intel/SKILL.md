@@ -15,17 +15,25 @@ discount pressure getting worse?"
 
 ## Method
 1. `list_tables()` → find the competitor and pricing primitive tables
-2. `aggregate_table` on the competitor table, grouped by competitor name →
-   frequency
+2. Competitors: `count_mentions({competitor: [aliases]}, deal_ids,
+   side="buyer")` over every deal with calls — `deals` is the count. (The
+   competitor primitive table is a cross-check, not the source.)
 3. Join to deals: win rate when each competitor is present vs overall
-4. `aggregate_table` on the pricing/discount tables by month → is pressure rising
+4. Discounts and counters: `price_points(deal_ids)` over every deal with calls.
+   Our side names several amounts (tiers, multi-year totals), so each buyer
+   amount carries `gaps_pct_below_seller_amount` against every higher one.
+   Read the quotes to decide which of our amounts was the quote on the table
+   and which buyer amount is the counter, then report that pair's gap as given
+   — never against the largest amount by default, never recomputed.
+   `aggregate_table` on the pricing/discount tables by month → is pressure rising
 5. `find_in_calls` on the deals behind the top findings for quotes. If a primitive table
-   is empty, still search — missing tags are not missing talk
+   is empty, still search — missing tags are not missing talk. Never count or
+   subtract from passages
 
 ## Refuse
 Nothing blocks this. But always report:
-- Competitor names aren't normalised — "Salesforce" and "SFDC" count separately.
-  Say so and merge obvious ones by hand, showing what you merged.
+- Competitor names aren't normalised in the tables. Put aliases in one
+  `count_mentions` label ("Salesforce": ["salesforce", "sfdc"]) and say what you merged.
 
 ## Answer
 Headline: the top competitor and the pricing trend.

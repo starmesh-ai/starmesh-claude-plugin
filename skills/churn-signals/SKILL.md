@@ -11,10 +11,14 @@ Load `starmesh-core` and `account-lens` together in one turn (skip any already l
 
 ## Method
 For each account, gather and weigh in the answer — not in a score:
-- **Contact gap** — days since any conversation, vs that account's own normal
+- **Contact gap** — `engagement_cadence(deal_ids)` over the account's deals:
+  `days_since_last` vs that account's own `max_gap_days`, touches in the last
+  30/90 days, and median buyer reply hours. One call for all deals; never
+  compute gaps from dates yourself
 - **Who went quiet** — a champion who stopped appearing
 - **Sentiment direction** — across their last few calls, not one
-- **Competitor mentions** — recent and by whom
+- **Competitor mentions** — recent and by whom: `count_mentions(competitors,
+  deal_ids, side="buyer")`
 - **Unresolved objections** — still open, as of their call date
 - **Expansion tells** — new teams appearing, new use cases, volume questions
 

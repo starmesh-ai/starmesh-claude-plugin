@@ -13,8 +13,10 @@ Load `starmesh-core` and `theme-lens` together in one turn (skip any already loa
 ## Method
 1. `list_tables()` → find the feature request table; note it's email-sourced
 2. `aggregate_table` grouped by request → frequency
-3. `search_whole_book` for the same asks **in calls** ("not indexed" → `find_in_calls` on the relevant deals' file_ids),, which the extractor
-   missed — this is where most of it lives
+3. Find the same asks **in calls**, which the extractor missed — this is where
+   most of it lives: `search_whole_book` for the wording ("not indexed" →
+   `find_in_calls`), then `count_mentions({ask: [synonyms]}, deal_ids,
+   side="buyer")` for how many deals asked. Never count from passages
 4. Merge by hand, show the merges
 5. Join to accounts and revenue
 

@@ -24,7 +24,8 @@ Load `starmesh-core` in the same turn as your first data calls if it isn't loade
 ## Returns
 - Deals: open, won, lost, with amounts
 - Every conversation tied to the account, newest first
-- Days since last contact
+- Days since last contact, gaps and reply times: `engagement_cadence(deal_ids)`
+  over the account's deals — don't compute them from dates
 - Who's involved and who's gone quiet
 - Recent signals with quotes
 
