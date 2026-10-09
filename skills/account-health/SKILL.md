@@ -16,6 +16,9 @@ relationship?"
 This is the one skill where **prose is the answer**, not a table.
 
 ## Method
+Order (core §0b): `account-lens` (CRM + extracted signals) first; transcripts
+to quote the moments and to fill empty tables.
+
 1. `account-lens` for the full picture
 2. Build a timeline: what happened, in order, with dates
 3. Identify what *changed* — new people, dropped people, shifted tone, new asks

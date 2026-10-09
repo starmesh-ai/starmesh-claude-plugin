@@ -10,6 +10,10 @@ description: Which accounts are drifting toward churn and which are opening up f
 Load `starmesh-core` and `account-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Method
+Order (core §0b): per-account CRM and primitive tables plus
+`engagement_cadence` first, then `find_in_calls` on that account's file_ids for
+quotes, then book-wide search only for what is still missing.
+
 For each account, gather and weigh in the answer — not in a score:
 - **Contact gap** — `engagement_cadence(deal_ids)` over the account's deals:
   `days_since_last` vs that account's own `max_gap_days`, touches in the last

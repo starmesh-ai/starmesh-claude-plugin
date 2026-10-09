@@ -14,6 +14,9 @@ Load `starmesh-core` in the same turn as your first data calls if it isn't loade
 when competitor X shows up?"
 
 ## Method
+Order (core §0b): CRM stages and primitive aggregates first, code tools for
+text-derived counts, transcripts last for quotes.
+
 1. `aggregate_table("crm_deals", group_by=["stage"])` — see the real stage names
    first, don't assume "Closed Won"
 2. Build two cohorts by stage filter, get deal_ids for each

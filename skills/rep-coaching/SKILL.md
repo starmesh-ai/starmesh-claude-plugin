@@ -9,6 +9,9 @@ description: How a rep is performing and what to work on - talk ratio, discovery
 
 Load `starmesh-core` and `person-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
+Order (core §0b): CRM aggregates first, then `talk_share` (the one deliberate
+code-tool-over-primitive case), then calls to quote.
+
 ## Works today — deal level
 1. `aggregate_table("crm_deals", group_by=["owner_user_id"])` — book size, win rate,
    average deal size, cycle length
