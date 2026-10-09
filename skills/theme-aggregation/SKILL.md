@@ -1,6 +1,6 @@
 ---
 name: theme-aggregation
-description: What customers are collectively saying, grouped into themes with counts, trend and revenue attached. Use for "what are the top issues", "what are we hearing most". Undercounts until a shared topic taxonomy exists - always say so.
+description: What customers are collectively saying (top topics, themes, issues, trends by topic), grouped into themes with counts, trend and revenue attached. Use for "what are the top issues", "what are we hearing most". Undercounts until a shared topic taxonomy exists - always say so.
 ---
 
 # Theme aggregation
@@ -11,6 +11,9 @@ issues" and "data import failures" never group. Counts come out low with no erro
 Load `starmesh-core` and `theme-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
 ## Method today
+Order: topic tables are the source of counts; transcripts only add quotes and
+missed wording (core §0b).
+
 1. `list_tables()` → find the topics primitive table
 2. `aggregate_table` on it grouped by topic → raw frequency
 3. Merge obvious duplicates **by hand and show what you merged**

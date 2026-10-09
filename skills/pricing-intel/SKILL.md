@@ -14,10 +14,14 @@ Load `starmesh-core` and `theme-lens` together in one turn (skip any already loa
 discount pressure getting worse?"
 
 ## Method
-1. `list_tables()` → find the competitor and pricing primitive tables
+Order (core §0b): primitive tables list who and when; code tools then give
+the exact counts, because competitor names in the tables are not normalised.
+1. `list_tables()` → find the competitor and pricing primitive tables;
+   `aggregate_table` them for the candidate competitors and the monthly trend
 2. Competitors: `count_mentions({competitor: [aliases]}, deal_ids,
-   side="buyer")` over every deal with calls — `deals` is the count. (The
-   competitor primitive table is a cross-check, not the source.)
+   side="buyer")` over every deal with calls, seeded with the names from step 1
+   — `deals` is the count. Where it disagrees with the table, report the
+   `count_mentions` figure and say the table differed
 3. Join to deals: win rate when each competitor is present vs overall
 4. Discounts and counters: `price_points(deal_ids)` over every deal with calls.
    Our side names several amounts (tiers, multi-year totals), so each buyer

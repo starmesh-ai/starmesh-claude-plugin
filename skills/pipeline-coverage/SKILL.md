@@ -18,6 +18,8 @@ missing and which owner/period you needed it for.
 You can still report total open pipeline as a number on its own.
 
 ## Risk — works today
+Order (core §0b): CRM aggregate, then risk primitives, then a transcript quote
+per at-risk deal.
 1. `aggregate_table("crm_deals", filters={"is_open": true}, group_by=["stage"])`
    with `sum:amount`
 2. Cross-reference risk primitive tables for stalled and objection-heavy deals

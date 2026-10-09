@@ -1,7 +1,7 @@
 {
   "name": "starmesh-mcp",
   "displayName": "Starmesh",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Starmesh conversation MCP plus skills for sales, CX, and product questions. Copy the matching citation URL per fact; when tables are empty or the user asks for specifics, fetch transcripts.",
   "author": {
     "name": "Starmesh",

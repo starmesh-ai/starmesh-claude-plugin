@@ -15,6 +15,9 @@ Load `starmesh-core` and `deal-lens` together in one turn (skip any already load
 Not: win probability (that's a model), or forecast accuracy.
 
 ## Method
+Order (core §0b): `deal-lens` (CRM + extracted signals) first; transcripts
+only to quote a signal or to check a check whose table was empty.
+
 1. `deal-lens` for the deal, and `engagement_cadence([deal_id])` in the same turn
 2. Check five things, each with evidence:
    - **Commitments** — next steps agreed, any past their date

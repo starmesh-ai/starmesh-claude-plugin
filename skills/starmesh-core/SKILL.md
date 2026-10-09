@@ -18,6 +18,24 @@ Every Starmesh skill follows these.
   `get_table_schema` unless a name or column is actually unknown.
 - Stop calling tools once you can answer what was asked.
 
+## 0b. Source order — always this sequence
+1. **Structured first.** Primitive tables (`query_table` / `aggregate_table`),
+   CRM tables, `get_*_context`. They give the numbers, the candidate list, and
+   which `file_id`s to read. Never skip this step.
+2. **Then the conversation.** `find_in_calls` / `get_transcript` on the
+   `file_id`s step 1 returned: quotes, and what the labels missed.
+3. **Then book-wide search.** `search_whole_book` / `find_in_all_calls` only for
+   what steps 1-2 can't reach (unlinked calls, wording the tags missed).
+4. **Code tools** (`count_mentions`, `price_points`, `talk_share`,
+   `engagement_cadence`) whenever a number comes from text. Never count yourself.
+
+Rows in the table → the table's numbers are the answer; transcripts add quotes,
+not totals. Do step 2 in the same answer — don't stop at the table and offer
+quotes as a follow-up. Sample data (`data_status: sample`) is still data: answer
+from it, labelled once, rather than refusing. Table empty, "other"-only, or under ~5 rows → say so in one
+sentence, then go to step 2/3. Mark each claim as tag-based or
+transcript-based. A skill may reorder this only if it says why.
+
 ## 1. Resolve the entity first
 Never guess an ID from a name. `find_deal("Acme")` or `find_account("Acme")`
 first. If more than one matches, ask which — don't pick. An id you were
@@ -105,7 +123,7 @@ was attached to a different fact.
 No matching quote and no matching query URL means don't state it as sourced.
 
 ## 5. Structured first, then the actual conversation
-Tables and primitives are an index, not the whole answer.
+See §0b for the order. Tables and primitives are an index, not the whole answer.
 
 **Empty structured data is not "nothing happened."**
 If `query_table`, `aggregate_table`, or a primitive table returns no rows, or
@@ -178,3 +196,29 @@ what was said.
   Even then say "not found with these words", not "not discussed".
 - `search_whole_book` only covers indexed deals. "Not indexed" error → switch to
   `find_in_calls`; don't retry `search_whole_book`.
+- Book-wide question and "not indexed" → `find_in_all_calls(keywords)`: one call
+  that reads every call in the dataset, including calls linked to no deal. Use
+  topic words ("sandbox", "pilot"), not "need"/"want". Say how many calls it
+  searched. Don't answer a book-wide question from only a few deals' calls.
+
+## 11. Know what data you are reading
+`starmesh_status()` reports `data_status`. It decides what you may claim:
+
+| `data_status` | Meaning | Do |
+|---|---|---|
+| `sample` | Signed out or chose sample | Say once it is illustrative sample data, not their pipeline. Offer `onboarding_url` |
+| `not_ready` | Signed in, nothing readable yet | Say it is syncing or not connected; don't answer from sample or memory. Point at `onboarding_url` |
+| `ready` | Their own data | Answer normally |
+| `trial_expired` | Past `query_until` | Say so; point at `upgrade_url`; don't answer from stale tables |
+
+- Trial data is a one-time pull of a limited window (`trial_window_start` →
+  `trial_window_end`). State that window when a count or trend depends on it —
+  "nothing before <start>" is a limit of the import, not a finding.
+- Only the user's own book is visible. Colleagues' deals may be absent: say
+  "in your book", not "at the company", unless the data shows the whole team.
+- `action_required` (e.g. `choose_crm_user`) means a sync is stopped. Raise it
+  before analysis; numbers will be incomplete until it is resolved.
+- Thin early data (a few deals, calls from one week): say how much you have
+  before drawing a pattern. Don't pad with general sales advice.
+- A first-time user may not know what to ask. After the first answer, offer 2-3
+  follow-ups this data can actually support.
