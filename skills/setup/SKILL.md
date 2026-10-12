@@ -51,11 +51,14 @@ Call `starmesh_status()` before any deal/account/search tool.
 
 ### No CRM or meetings (`missing` includes `crm` or `meetings`, or `has_sources` is false)
 
-They have an account, but onboarding is not done. Ask the follow-ups here,
-then send them to `onboarding_url` to click the cards and complete OAuth:
+They have an account, but onboarding is not done. Do not quiz them in chat: the card has the choices. If they already named their tools, call
+`connect_source` for each; otherwise tell them to pick in the card. Then connect them with the card `starmesh_status` shows (`connect_source`, `start_sync`,
+`onboarding_status`). If no card renders, send them to `onboarding_url` to click the cards
+and complete OAuth. The choices are Salesforce or Attio for the CRM, and Zoom, Gong, Granola
+or Microsoft Teams for calls:
 
-1. Which CRM do they use — Salesforce or Attio?
-2. Where are calls recorded — Zoom, Gong, Granola, or Microsoft Teams?
+1. (CRM)
+2. (Recorder)
 3. Optional: Google Calendar to match calls to deals. Gmail is paid plans
    only; do not tell them to connect Gmail on a trial.
 
@@ -66,10 +69,17 @@ Do not answer the original question from sample tables, guessed IDs, or
 general CRM knowledge. Do not invent deals, quotes, or citation URLs.
 When they say they connected, call `starmesh_status()` again.
 
-- Still `not_ready` and sources exist (`syncing` true): say the import is
-  running (trial is a one-time last-7-days pull) and they can ask again
-  in a few minutes.
-- `ready`: load `starmesh-core` with the analysis skill and answer.
+- Still `not_ready` and sources exist (`syncing` true): try the normal tools
+  anyway. Only if they return no data, say the import is still running and to
+  ask again in a few minutes. Never fall back to sample or fictional data for
+  someone who has connected sources.
+- `ready`: load `starmesh-core` with the analysis skill and answer, even if
+  enrichment is unfinished or a transform failed. Answer best effort, then end
+  with one short line that answers get fuller once enrichment finishes. Never
+  say Starmesh "isn't ready" when tools return their data.
+- A status you got earlier in the conversation is stale: setup runs in the
+  card. Call `starmesh_status()` again before saying anything is not
+  connected or not ready.
 
 ### Trial expired (`data_status` is `trial_expired`)
 
