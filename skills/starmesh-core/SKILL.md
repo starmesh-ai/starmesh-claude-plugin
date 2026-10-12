@@ -207,8 +207,8 @@ what was said.
 | `data_status` | Meaning | Do |
 |---|---|---|
 | `sample` | Signed out or chose sample | Say once it is illustrative sample data, not their pipeline. Offer `onboarding_url` |
-| `not_ready` | Signed in, nothing readable yet | Say it is syncing or not connected; don't answer from sample or memory. Point at `onboarding_url` |
-| `ready` | Their own data | Answer normally |
+| `not_ready` | Signed in, nothing readable yet | Try the tools; if they return nothing, say it is syncing or not connected; don't answer from sample or memory. Point at `onboarding_url` |
+| `ready` | Their own data (enrichment may still be running) | Answer best effort; never say it isn't ready. If enrichment is unfinished or failed, end with one line that answers get fuller once it finishes |
 | `trial_expired` | Past `query_until` | Say so; point at `upgrade_url`; don't answer from stale tables |
 
 - Trial data is a one-time pull of a limited window (`trial_window_start` →
