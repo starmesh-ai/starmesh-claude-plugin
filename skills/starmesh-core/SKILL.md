@@ -1,6 +1,6 @@
 ---
 name: starmesh-core
-description: Shared rules for every Starmesh analysis skill - entity resolution, citation kinds (never mix quote URLs with query URLs), and falling through to transcripts when tables are empty or the user asks for specifics. Load it in the same turn as the analysis skill (not before it). Not used on its own.
+description: Shared rules for every Starmesh analysis skill - entity resolution, citation kinds (never mix quote URLs with query URLs), local-timezone timestamps (not UTC) in answers, and falling through to transcripts when tables are empty or the user asks for specifics. Load it in the same turn as the analysis skill (not before it). Not used on its own.
 ---
 
 # Starmesh analysis — shared rules
@@ -163,6 +163,22 @@ computed when the call was processed, from what was known *then*. Report them as
 after the deal closed lost") and don't present it as what led to the outcome —
 either the link or a date is wrong. Same for a call before the deal was created.
 
+## 6b. Show times in the user's local timezone
+Tool results store datetimes in UTC (ISO strings ending in `Z`, BigQuery
+TIMESTAMP, etc.). When you show dates and times to the user — call start,
+email sent, last touch, "as of", meeting times — convert them to the user's
+local timezone. Include a clear zone label when the clock time matters
+(e.g. `3:40 PM IST`, `10:15 AM PDT`, or `UTC+5:30`). Never paste raw UTC /
+`...Z` strings as the answer the user reads.
+
+- Prefer the timezone the environment already knows for this user (local
+  context, profile, or what they stated). If you truly don't know it, ask
+  once, or state the zone you used.
+- Date-only fields (`close_date`, calendar days with no time of day) stay as
+  calendar dates — do not shift them across midnight by inventing a time.
+- Keep sorting, filtering, and comparisons on the UTC values from tools;
+  convert only for presentation.
+
 ## 7. Refuse rather than guess
 - Metric has no definition in `_metrics/` → say so, don't invent one
 - Required table missing → name it, stop — unless the question is about what
@@ -180,6 +196,7 @@ is not.
 4. What would change this
 5. If you fell through to transcripts because tables were empty, say that in
    one sentence so the reader knows the number isn't missing by accident
+6. Timestamps in the user's local timezone (§6b), not UTC
 
 ## 9. Stay in budget
 Each skill states a max tool-call count. If you hit it, report what you have and
@@ -217,7 +234,8 @@ what was said.
 - Only the user's own book is visible. Colleagues' deals may be absent: say
   "in your book", not "at the company", unless the data shows the whole team.
 - `action_required` (e.g. `choose_crm_user`) means a sync is stopped. Raise it
-  before analysis; numbers will be incomplete until it is resolved.
+  before analysis and send them to `onboarding_url` to fix it in the web app;
+  numbers will be incomplete until it is resolved.
 - Thin early data (a few deals, calls from one week): say how much you have
   before drawing a pattern. Don't pad with general sales advice.
 - A first-time user may not know what to ask. After the first answer, offer 2-3

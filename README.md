@@ -9,29 +9,20 @@ connects to the hosted MCP at
 
 ## Install
 
-### Claude Code (works as soon as this repo is public)
+| Where | Steps |
+|---|---|
+| Claude Desktop | Customize → Plugins → Add marketplace → `starmesh-ai/starmesh-claude-plugin`, then install **Starmesh** |
+| Claude Code | `/plugin marketplace add starmesh-ai/starmesh-claude-plugin` then `/plugin install starmesh-mcp@starmesh` |
 
-```text
-/plugin marketplace add starmesh-ai/starmesh-claude-plugin
-/plugin install starmesh-mcp@starmesh
-```
-
-Then authenticate the `starmesh` MCP server (`/mcp` → Authenticate). Claude
-opens a browser login. Paste the team MCP token you were given.
-
-### Claude.ai / Cowork (after directory review)
-
-1. Open **Browse plugins** (Cowork) or the plugin directory.
-2. Install **Starmesh**.
-3. Complete the Connect / OAuth prompt with the team MCP token.
-
-Until Anthropic lists it in the community directory, use the Claude Code
-commands above, or ask an org admin to upload the plugin zip under
-**Organization settings → Plugins**.
+Then Connect (Desktop) or `/mcp` → `starmesh` → Authenticate (Claude Code)
+and continue with Google. Free accounts use sample data in one click; your
+own CRM and calls are on paid plans, set up in the Starmesh web app. See
+[SETUP.md](SETUP.md).
 
 ## After install
 
-Load `starmesh-core` before any other Starmesh skill. Ask things like:
+Try `/pipeline-tour` for a first look. Load `starmesh-core` before any
+other Starmesh skill. Ask things like:
 
 - "How is the Acme deal doing?"
 - "What are we hearing on pricing?"

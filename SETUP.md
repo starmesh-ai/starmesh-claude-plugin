@@ -1,45 +1,46 @@
 # Setup
 
 The plugin connects Claude to the hosted Starmesh MCP at
-`https://starmesh-chat-253410410619.us-central1.run.app/mcp`.
+`https://starmesh-chat-253410410619.us-central1.run.app/mcp`. It ships no
+credentials: you sign in with Google when Claude connects.
 
-The plugin ships no credentials. Authentication is OAuth against that
-server. The login page asks for your **team MCP token** (the same value
-operators set as `MCP_SHARED_TOKEN` on the server). Do not put that token
-in git, in this file, or in a skill.
+## Install
 
-## Prerequisites
+| Where | Steps |
+|---|---|
+| Claude Desktop | Customize → Plugins → Add marketplace → `starmesh-ai/starmesh-claude-plugin`, install **Starmesh**, then Connect |
+| Claude Code | `/plugin marketplace add starmesh-ai/starmesh-claude-plugin`, `/plugin install starmesh-mcp@starmesh`, then `/mcp` → `starmesh` → Authenticate |
+| claude.ai (connector only) | Settings → Connectors → Add custom connector, paste the MCP URL above, then Connect |
 
-- A Starmesh team MCP token
-- Claude Code, or Cowork / Claude.ai with plugins enabled
+## First connection
 
-## Claude Code
+1. Continue with Google. Your email becomes your Starmesh account.
+2. A free account gets two choices:
 
-1. Install the plugin (see [README](README.md#install)).
-2. Run `/mcp`, select the `starmesh` server, and choose Authenticate.
-3. In the browser form titled "Connect to Starmesh", paste the team token
-   and submit.
-4. Return to Claude Code. The `starmesh` server should show as connected.
+| Choice | What happens |
+|---|---|
+| **Use sample data** | One click. A new Claude chat opens with a tour of the sample book (30 deals, 3 reps, real-sounding calls). |
+| **Set up my own data** | Paid plans: pricing is agreed on a call ([starmesh.ai/pricing](https://starmesh.ai/pricing)). Once your account is upgraded, connect your CRM and call recorder in the Starmesh web app and press Start syncing. |
 
-## Cowork / Claude.ai
+3. After setting up your own data, **connect Starmesh in Claude again**. The
+   first connection does not include data you set up afterwards.
 
-1. Install **Starmesh** from plugins.
-2. When Claude prompts you to connect the connector, complete the same
-   "Connect to Starmesh" login and paste the team token.
-3. Manage the connector from the installed plugin's connector page.
+Setup and settings live in the web app, plans and pricing on starmesh.ai, never in the chat.
 
-## Verify the connection
+## Try it
 
-Ask Claude to resolve a known account or deal, for example:
+Ask `/pipeline-tour`, or:
 
-> Find the deal named Acme. Do not guess an ID.
+- "Which deals need attention this week?"
+- "How is the Acme deal doing?"
+- "Why do we lose?"
 
-You should see a `find_deal` / `find_account` tool call against the Starmesh
-MCP, then a result with a query `citation_url`. If the server is
-disconnected, follow this file again rather than answering from memory.
+Every number links to the query behind it and every quote to its call.
 
-## Reconnect
+## If it does not connect
 
-- Claude Code: `/mcp` → `starmesh` → re-authenticate or clear auth.
-- Cowork: sign out or back in from the plugin's connector page.
-- Uninstalling the plugin removes the server configuration.
+| Symptom | Fix |
+|---|---|
+| Desktop shows "Connects in sessions" | Start a new chat and ask a question; the sign-in opens then |
+| Tools missing or auth errors | Claude Code: `/mcp` → `starmesh` → Authenticate. Desktop: Connect on the Starmesh connector |
+| Answers still come from sample data after an upgrade | Connect Starmesh in Claude again |

@@ -1,6 +1,7 @@
 ---
 name: setup
-description: Connect the Starmesh MCP after plugin install, first-time onboarding, or when tools fail with auth errors. Use when the user just installed Starmesh, just signed in, has no CRM or meetings connected, asks to authenticate, connect, log in, or the starmesh MCP is disconnected, unauthorized, or missing.
+description: Troubleshoot the Starmesh connection - when Starmesh tools are missing or fail with auth errors, or the user asks how to connect their own CRM or call recorder. Not a first step after install; for a first look, use pipeline-tour.
+user-invocable: false
 ---
 
 # Connect Starmesh MCP
@@ -15,7 +16,8 @@ Remote MCP at
 `https://starmesh-chat-253410410619.us-central1.run.app/mcp`.
 
 No tokens belong in this skill, in chat, or in files you write. The
-login page is Sign in with Google, or Continue with sample data.
+login page is Continue with Google. A free account with nothing connected
+then picks sample data (one click) or paid setup of their own CRM and calls.
 A legacy team token is only the advanced fallback on that page.
 
 OAuth for Salesforce, Attio, Zoom, Gong, Granola, Teams, and Calendar
@@ -30,7 +32,7 @@ by hand.
 If the connector says "Connects in sessions" and Connect is disabled,
 that is expected. Tell them to start a new chat and ask the original
 question again. Desktop opens the Starmesh login page at that point
-(Sign in with Google, or Continue with sample data). The Settings
+(Continue with Google, then sample data or paid setup). The Settings
 Connect button does not save a login for this connector.
 
 ## Claude Code
@@ -51,23 +53,21 @@ Call `starmesh_status()` before any deal/account/search tool.
 
 ### No CRM or meetings (`missing` includes `crm` or `meetings`, or `has_sources` is false)
 
-They have an account, but onboarding is not done. Do not quiz them in chat: the card has the choices. If they already named their tools, call
-`connect_source` for each; otherwise tell them to pick in the card. Then connect them with the card `starmesh_status` shows (`connect_source`, `start_sync`,
-`onboarding_status`). If no card renders, send them to `onboarding_url` to click the cards
-and complete OAuth. The choices are Salesforce or Attio for the CRM, and Zoom, Gong, Granola
-or Microsoft Teams for calls:
+They have an account, but setup is not done. Setup, connecting sources and
+account settings happen only in the Starmesh web app, never in this chat. Do
+not quiz them about their tools and do not try to connect anything here. Paste
+`onboarding_url` as a markdown link and tell them:
 
-1. (CRM)
-2. (Recorder)
-3. Optional: Google Calendar to match calls to deals. Gmail is paid plans
-   only; do not tell them to connect Gmail on a trial.
-
-Then: open this page, pick those sources, finish sign-in there, and tell me
-when you're back. Paste `onboarding_url` as a markdown link.
+1. Pick a CRM (Salesforce or Attio) and a call recorder (Zoom, Gong, Granola
+   or Microsoft Teams) there, and press Start syncing. Google Calendar is
+   optional. Gmail is paid plans only; do not tell them to connect Gmail on a
+   trial.
+2. Once setup is done, connect Starmesh in Claude again. This sign-in does
+   not connect their own data; a fresh connection after setup does.
 
 Do not answer the original question from sample tables, guessed IDs, or
 general CRM knowledge. Do not invent deals, quotes, or citation URLs.
-When they say they connected, call `starmesh_status()` again.
+When they say they are back, call `starmesh_status()` again.
 
 - Still `not_ready` and sources exist (`syncing` true): try the normal tools
   anyway. Only if they return no data, say the import is still running and to
@@ -78,24 +78,31 @@ When they say they connected, call `starmesh_status()` again.
   with one short line that answers get fuller once enrichment finishes. Never
   say Starmesh "isn't ready" when tools return their data.
 - A status you got earlier in the conversation is stale: setup runs in the
-  card. Call `starmesh_status()` again before saying anything is not
+  web app. Call `starmesh_status()` again before saying anything is not
   connected or not ready.
 
-### Trial expired (`data_status` is `trial_expired`)
+### Plan ended (`data_status` is `trial_expired`)
 
-Say the trial has ended and give `upgrade_url`. Don't answer from the old
-tables.
+Only a paid plan can end; the free plan never expires. Say their plan has
+ended and give `upgrade_url` to renew. Don't answer from the old tables.
 
 ### Sync stopped (`action_required` is not empty)
 
 A `choose_crm_user` entry means the CRM sync is paused until they say which
-CRM user they are. Ask, then call `choose_crm_user`, then `starmesh_status()`.
+CRM user they are. They pick it in the web app: give them `onboarding_url`,
+then call `starmesh_status()` when they are back.
 
 ### Sample data (`data_status` is `sample`, or they chose sample on the login page)
 
-Answer from the labelled sample book. Say it is illustrative sample data,
-not their pipeline. Offer the same `onboarding_url` if they want their
-own CRM and meetings instead.
+Free accounts only get the sample. Answer from the labelled sample book and
+say once it is illustrative sample data, not their pipeline. Only if they ask
+for their own deals: connecting their own CRM and calls is on paid plans.
+Give `upgrade_url` (the plans page) as a markdown link; once upgraded they set
+up at `onboarding_url`, then connect Starmesh in Claude again. The free plan
+has no time limit: never say it expires. When a tool result carries
+`upgrade_note`, end that answer with one short, friendly line inviting them to
+try it on their own pipeline, linking `upgrade_url`. Never more often than
+that.
 
 ### Ready (`data_status` is `ready`)
 
