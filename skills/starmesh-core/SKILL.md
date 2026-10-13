@@ -217,7 +217,8 @@ what was said.
 - Only the user's own book is visible. Colleagues' deals may be absent: say
   "in your book", not "at the company", unless the data shows the whole team.
 - `action_required` (e.g. `choose_crm_user`) means a sync is stopped. Raise it
-  before analysis; numbers will be incomplete until it is resolved.
+  before analysis and send them to `onboarding_url` to fix it in the web app;
+  numbers will be incomplete until it is resolved.
 - Thin early data (a few deals, calls from one week): say how much you have
   before drawing a pattern. Don't pad with general sales advice.
 - A first-time user may not know what to ask. After the first answer, offer 2-3
