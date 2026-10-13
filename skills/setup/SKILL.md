@@ -81,10 +81,10 @@ When they say they are back, call `starmesh_status()` again.
   web app. Call `starmesh_status()` again before saying anything is not
   connected or not ready.
 
-### Trial expired (`data_status` is `trial_expired`)
+### Plan ended (`data_status` is `trial_expired`)
 
-Say the trial has ended and give `upgrade_url`. Don't answer from the old
-tables.
+Only a paid plan can end; the free plan never expires. Say their plan has
+ended and give `upgrade_url` to renew. Don't answer from the old tables.
 
 ### Sync stopped (`action_required` is not empty)
 
@@ -98,7 +98,11 @@ Free accounts only get the sample. Answer from the labelled sample book and
 say once it is illustrative sample data, not their pipeline. Only if they ask
 for their own deals: connecting their own CRM and calls is on paid plans.
 Give `upgrade_url` (the plans page) as a markdown link; once upgraded they set
-up at `onboarding_url`, then connect Starmesh in Claude again.
+up at `onboarding_url`, then connect Starmesh in Claude again. The free plan
+has no time limit: never say it expires. When a tool result carries
+`upgrade_note`, end that answer with one short, friendly line inviting them to
+try it on their own pipeline, linking `upgrade_url`. Never more often than
+that.
 
 ### Ready (`data_status` is `ready`)
 
