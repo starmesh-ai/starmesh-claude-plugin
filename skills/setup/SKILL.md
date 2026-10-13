@@ -96,8 +96,9 @@ then call `starmesh_status()` when they are back.
 
 Free accounts only get the sample. Answer from the labelled sample book and
 say once it is illustrative sample data, not their pipeline. Only if they ask
-for their own deals: connecting their own CRM and calls is on paid plans, set
-up at `onboarding_url`; then they connect Starmesh in Claude again.
+for their own deals: connecting their own CRM and calls is on paid plans.
+Give `upgrade_url` (the plans page) as a markdown link; once upgraded they set
+up at `onboarding_url`, then connect Starmesh in Claude again.
 
 ### Ready (`data_status` is `ready`)
 
