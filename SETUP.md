@@ -20,12 +20,12 @@ credentials: you sign in with Google when Claude connects.
 | Choice | What happens |
 |---|---|
 | **Use sample data** | One click. A new Claude chat opens with a tour of the sample book (30 deals, 3 reps, real-sounding calls). |
-| **Set up my own data** | Paid plans (Starter or Team). Opens the Starmesh web app. Request a plan on its Plans page, connect your CRM and call recorder, press Start syncing. |
+| **Set up my own data** | Paid plans: pricing is agreed on a call ([starmesh.ai/pricing](https://starmesh.ai/pricing)). Once your account is upgraded, connect your CRM and call recorder in the Starmesh web app and press Start syncing. |
 
 3. After setting up your own data, **connect Starmesh in Claude again**. The
    first connection does not include data you set up afterwards.
 
-Setup, plans and settings live in the web app, never in the chat.
+Setup and settings live in the web app, plans and pricing on starmesh.ai, never in the chat.
 
 ## Try it
 
