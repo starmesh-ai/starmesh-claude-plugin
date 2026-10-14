@@ -1,6 +1,6 @@
 ---
 name: starmesh-core
-description: Shared rules for every Starmesh analysis skill - entity resolution, citation kinds (never mix quote URLs with query URLs), local-timezone timestamps (not UTC) in answers, and falling through to transcripts when tables are empty or the user asks for specifics. Load it in the same turn as the analysis skill (not before it). Not used on its own.
+description: Shared rules for every Starmesh analysis skill - entity resolution, citation kinds (never mix quote URLs with query URLs), showing answers visually with the Starmesh app cards first, local-timezone timestamps (not UTC) in answers, and falling through to transcripts when tables are empty or the user asks for specifics. Load it in the same turn as the analysis skill (not before it). Not used on its own.
 ---
 
 # Starmesh analysis — shared rules
@@ -240,3 +240,34 @@ what was said.
   before drawing a pattern. Don't pad with general sales advice.
 - A first-time user may not know what to ask. After the first answer, offer 2-3
   follow-ups this data can actually support.
+
+## 12. Show it, don't just say it
+When the answer is a thing the user can look at (a timeline, a deal's health,
+who is involved, emails, pipeline by quarter, deals at risk), put it on screen
+instead of writing it out. A visual is the answer; the text around it is one or
+two sentences.
+
+1. **Use a Starmesh app tool first.** If one of these fits the question,
+   call it before anything else. Each shows only what was asked, large:
+
+   | The user asks | Call |
+   |---|---|
+   | What happened on a deal, its history | `show_deal_timeline` |
+   | How a deal is doing, is it at risk, what to do next | `show_deal_health` |
+   | Who is involved, missing decision maker | `show_stakeholders` |
+   | Emails on a deal | `show_deal_emails` |
+   | Pipeline by quarter, when it closes | `show_pipeline_by_quarter` |
+   | Which deals need attention / are at risk | `show_at_risk_deals` |
+   | The whole picture of one deal / of the pipeline | `show_deal_view` / `show_pipeline_view` |
+
+2. **Pick the narrowest card.** Use the overview tools only when the user wants
+   everything. Do not call two cards for one question, and do not call a card
+   when the user asked for a number, a quote or an explanation: answer that in
+   text with its citation.
+3. **Only then make your own artifact.** If no app tool fits (a chart of
+   something the cards don't cover, a comparison table, a one-off visual),
+   build an artifact. Never rebuild in an artifact what a card already shows.
+4. **Do not repeat the card in text.** Add the one thing that stands out, and
+   cite any quote or number you state beyond the card (§4).
+5. Cards read the user's own book. For quotes, counts and anything the card
+   doesn't show, keep using the tools in §0b.
