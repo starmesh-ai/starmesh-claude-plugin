@@ -27,6 +27,7 @@ per at-risk deal.
 4. Always report how many open deals have a null amount — they're excluded
 
 ## Answer
+Follow core §8: verdict first, the twist, one next move.
 Headline: total open pipeline, and how much carries risk signals.
 Table by stage. Then the specific at-risk deals with the signal and a quote.
 Then explicitly: "coverage unavailable — no quota data".

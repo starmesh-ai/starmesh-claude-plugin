@@ -39,6 +39,7 @@ more useful and more honest than a number.
 CS calls often have no deal attached, so `account-lens` can't see them. Say so.
 
 ## Answer
+Follow core §8: verdict first, the twist, one next move.
 Headline: how many accounts show drift, how many show expansion.
 Table: account, signals fired, last contact, ARR if known.
 Then per top account: 2-3 quotes with citation urls. If an account's

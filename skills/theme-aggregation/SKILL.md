@@ -35,6 +35,7 @@ Two teams describing the same problem differently will not merge.
 "other" bucket — if it grows, the tag list needs updating.
 
 ## Answer
+Follow core §8: verdict first, the twist, one next move.
 Headline: top 3 themes by distinct accounts (not mentions).
 Table: theme, accounts, mentions, revenue, trend. Then quotes. Then the caveat.
 

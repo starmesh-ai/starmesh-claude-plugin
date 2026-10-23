@@ -21,6 +21,7 @@ Load `starmesh-core` in the same turn.
    `engagement_cadence([deal_id])` and quote one line from a call.
 
 ## Answer
+Follow core §8: verdict first, the twist, one next move.
 Short. One table (stage, deals, total), then the 3 deals as bullets with one
 reason and one cited quote each, then the top 2-3 themes from calls. On sample
 data, label it sample data once. End with 3 questions they could ask next,

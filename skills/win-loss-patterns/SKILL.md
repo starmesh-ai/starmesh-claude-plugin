@@ -37,6 +37,7 @@ text-derived counts, transcripts last for quotes.
 - Report how many deals had no linked conversations — they're invisible to this
 
 ## Answer
+Follow core §8: verdict first, the twist, one next move.
 Headline: the one or two things that most separate wins from losses.
 Table: metric, won, lost, gap. Then quotes. Then caveats — sample size, missing
 conversations, what this can't see.
