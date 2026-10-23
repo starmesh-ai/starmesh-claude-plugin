@@ -43,6 +43,7 @@ with several, are listed in the `note`; say how many were left out.
 Discovery quality — whether the questions were good. Only the rate is counted.
 
 ## Answer
+Follow core §8: verdict first, the twist, one next move.
 Headline: one thing going well, one thing to work on.
 Table: metric, this rep, team median. Then specific calls to listen to with
 citation urls. Then what's not measurable and why. Say how many deals

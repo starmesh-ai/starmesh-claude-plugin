@@ -45,3 +45,6 @@ before saying the account is quiet. Follow-ups asking what someone said must
 call `find_in_calls` / `get_transcript`, not rephrase the earlier table.
 
 Budget: 20 tool calls.
+
+## Answer
+Follow core §8: verdict first, the twist, one next move.

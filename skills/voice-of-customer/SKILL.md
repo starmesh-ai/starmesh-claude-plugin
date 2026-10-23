@@ -66,6 +66,7 @@ Don't rank by revenue alone — one large account's wish is not a product
 priority. Show all three columns and let the reader weigh them.
 
 ## Answer
+Follow core §8: verdict first, the twist, one next move.
 Headline: top 3 asks by distinct accounts.
 Table: request, accounts, mentions, revenue, first and last seen.
 Then quotes with citation urls. Then the caveat.

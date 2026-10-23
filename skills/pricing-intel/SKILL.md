@@ -40,6 +40,7 @@ Nothing blocks this. But always report:
   `count_mentions` label ("Salesforce": ["salesforce", "sfdc"]) and say what you merged.
 
 ## Answer
+Follow core §8: verdict first, the twist, one next move.
 Headline: the top competitor and the pricing trend.
 Table: competitor, mentions, deals, win rate. Then a discount-pressure trend.
 Then quotes.
