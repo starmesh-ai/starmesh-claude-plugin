@@ -36,8 +36,7 @@ only to quote a signal or to check a check whose table was empty.
 - All links below 0.5 confidence → say the calls may not belong to this deal
 
 ## Answer
-Follow core §8. For a deal the order is: verdict (and the passed close date,
-once, as housekeeping), the twist, a blockers table (Blocker · Who holds it ·
+Follow core §8. For a deal the order is: verdict (the passed close date is one trailing clause), the twist, a blockers table (Blocker · Who holds it ·
 What they said), the unlock chain as one arrowed line
 (`Security docs → Naomi's sign-off → procurement PO`, naming the step that can
 run in parallel), then "do this first".
