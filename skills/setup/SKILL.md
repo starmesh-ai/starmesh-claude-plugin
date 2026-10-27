@@ -41,7 +41,7 @@ Connect button does not save a login for this connector.
    the user to run:
    `/plugin marketplace add starmesh-ai/starmesh-claude-plugin`
    then `/plugin install starmesh-mcp@starmesh`
-2. Tell them to run `/mcp`, pick `starmesh`, Authenticate.
+2. Tell them to run `/mcp`, pick `Starmesh`, Authenticate.
 3. The browser opens the Starmesh login page. They finish it there, not
    in this conversation.
 4. After they return, do **not** retry the original question yet. Call

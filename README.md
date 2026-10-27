@@ -14,7 +14,7 @@ connects to the hosted MCP at
 | Claude Desktop | Customize → Plugins → Add marketplace → `starmesh-ai/starmesh-claude-plugin`, then install **Starmesh** |
 | Claude Code | `/plugin marketplace add starmesh-ai/starmesh-claude-plugin` then `/plugin install starmesh-mcp@starmesh` |
 
-Then Connect (Desktop) or `/mcp` → `starmesh` → Authenticate (Claude Code)
+Then Connect (Desktop) or `/mcp` → `Starmesh` → Authenticate (Claude Code)
 and continue with Google. Free accounts use sample data in one click; your
 own CRM and calls are on paid plans, set up in the Starmesh web app. See
 [SETUP.md](SETUP.md).
