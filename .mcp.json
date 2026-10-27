@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "starmesh": {
+    "Starmesh": {
       "type": "http",
       "url": "https://starmesh-chat-253410410619.us-central1.run.app/mcp"
     }

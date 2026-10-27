@@ -9,7 +9,7 @@ credentials: you sign in with Google when Claude connects.
 | Where | Steps |
 |---|---|
 | Claude Desktop | Customize → Plugins → Add marketplace → `starmesh-ai/starmesh-claude-plugin`, install **Starmesh**, then Connect |
-| Claude Code | `/plugin marketplace add starmesh-ai/starmesh-claude-plugin`, `/plugin install starmesh-mcp@starmesh`, then `/mcp` → `starmesh` → Authenticate |
+| Claude Code | `/plugin marketplace add starmesh-ai/starmesh-claude-plugin`, `/plugin install starmesh-mcp@starmesh`, then `/mcp` → `Starmesh` → Authenticate |
 | claude.ai (connector only) | Settings → Connectors → Add custom connector, paste the MCP URL above, then Connect |
 
 ## First connection
@@ -42,5 +42,5 @@ Every number links to the query behind it and every quote to its call.
 | Symptom | Fix |
 |---|---|
 | Desktop shows "Connects in sessions" | Start a new chat and ask a question; the sign-in opens then |
-| Tools missing or auth errors | Claude Code: `/mcp` → `starmesh` → Authenticate. Desktop: Connect on the Starmesh connector |
+| Tools missing or auth errors | Claude Code: `/mcp` → `Starmesh` → Authenticate. Desktop: Connect on the Starmesh connector |
 | Answers still come from sample data after an upgrade | Connect Starmesh in Claude again |

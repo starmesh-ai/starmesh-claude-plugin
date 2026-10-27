@@ -11,6 +11,7 @@
   "plugins": [
     {
       "name": "starmesh-mcp",
+      "displayName": "Starmesh",
       "source": "./",
       "description": "Starmesh conversation MCP plus sales, CX, and product skills"
     }
