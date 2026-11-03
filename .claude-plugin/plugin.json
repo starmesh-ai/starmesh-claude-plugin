@@ -1,7 +1,7 @@
 {
   "name": "starmesh-mcp",
   "displayName": "Starmesh",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Starmesh conversation MCP plus skills for sales, CX, and product questions. Copy the matching citation URL per fact; when tables are empty or the user asks for specifics, fetch transcripts.",
   "author": {
     "name": "Starmesh",
@@ -11,6 +11,7 @@
   "homepage": "https://github.com/starmesh-ai/starmesh-claude-plugin",
   "repository": "https://github.com/starmesh-ai/starmesh-claude-plugin",
   "license": "MIT",
+  "privacyPolicyUrl": "https://starmesh.ai/privacy-policy/",
   "keywords": ["sales", "crm", "pipeline", "cx", "product", "mcp"],
   "mcpServers": "./.mcp.json"
 }
