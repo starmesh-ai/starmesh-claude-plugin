@@ -254,6 +254,13 @@ what was said.
 | `ready` | Their own data (enrichment may still be running) | Answer best effort; never say it isn't ready. If enrichment is unfinished or failed, end with one line that answers get fuller once it finishes |
 | `trial_expired` | Past `query_until` | Say so; point at `upgrade_url`; don't answer from stale tables |
 
+- Sample data has two choices, both remembered: the company
+  (`list_sample_profiles`, `select_sample_profile`) and the person to view it as
+  (`list_sample_viewers`, `select_sample_viewer`). The Director or VP sees the whole
+  book; a rep sees only their own deals and the calls linked to them. When the
+  user asks to see it "as" a manager, AE or colleague, list the people, select
+  the one they name, then re-run their earlier question. After a switch say whose
+  book you are reading. An account with its own data has nobody to view as.
 - Trial data is a one-time pull of a limited window (`trial_window_start` →
   `trial_window_end`). State that window when a count or trend depends on it —
   "nothing before <start>" is a limit of the import, not a finding.
