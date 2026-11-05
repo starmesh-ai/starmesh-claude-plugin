@@ -1,0 +1,14 @@
+id: fiscal_calendar
+question: which fiscal year and quarter a date falls in
+grain: [date]
+rule: >
+  A fiscal year starts on start_month and is named by the calendar year it ends in
+  (start 2 = Feb: Feb 2026 is FY2027 Q1). Start month 1 is the calendar year and
+  prints as "2026 Q4", exactly as before. Quarters are three months from the start.
+setting: env FISCAL_YEAR_START_MONTH (1-12)
+default_start_month: 1
+sources:
+  - crm_deals.close_date
+known_gap: per-org setting does not exist yet (needs an orgs column); crm_deals.fiscal_year and fiscal_quarter are never filled by the extractors
+owner: sales-ops
+version: 1

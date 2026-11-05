@@ -19,6 +19,13 @@ and continue with Google. Free accounts use sample data in one click; your
 own CRM and calls are on paid plans, set up in the Starmesh web app. See
 [SETUP.md](SETUP.md).
 
+## Teams
+
+Members of a Starmesh team get answers by role: a Rep reads their own book, a
+Lead their team, an Admin everyone. Leads and Admins say "my book" to narrow an
+answer to themselves. The team's plan and CRM are set up by its Admin in the
+web app.
+
 ## After install
 
 Try `/pipeline-tour` for a first look. Load `starmesh-core` before any

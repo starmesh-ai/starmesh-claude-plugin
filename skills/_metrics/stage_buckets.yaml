@@ -1,0 +1,18 @@
+id: stage_buckets
+question: which part of the sales cycle a CRM stage name sits in, so stages from different pipelines line up
+grain: [stage]
+rule: >
+  First matching pattern wins (case-insensitive). A stage that matches none keeps
+  its own name and has no rank: it is never forced into a bucket. Used for team
+  stage bars and for CRM-vs-calls stage mismatch, which is only claimed when both
+  sides have a rank.
+buckets:
+  - {rank: 1, label: Discovery, pattern: 'discover|qualif|prospect|lead|intro|first call|needs analysis'}
+  - {rank: 2, label: Evaluation, pattern: 'evaluat|demo|proposal|price quote|pilot|trial|solution|scoping|technical|validation|value proposition|perception|decision makers'}
+  - {rank: 3, label: Negotiation, pattern: 'negotiat|commit|pricing|procure|contracting'}
+  - {rank: 4, label: Legal and close, pattern: 'legal|redline|paper|signature|closing|security review'}
+sources:
+  - crm_deals.stage
+applies_to: team views (org scope team). Personal and sample books keep the CRM's own stage names.
+owner: sales-ops
+version: 1
