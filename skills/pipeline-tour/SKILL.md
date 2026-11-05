@@ -12,6 +12,8 @@ Load `starmesh-core` in the same turn.
 ## Method
 1. `starmesh_status()`. If it says setup is not done and `sample_mode` is
    false, load `setup` instead and stop here.
+   If it has an `org` block, the tour covers the user's team (Lead, Admin) or
+   their own book (Rep): say which in the first sentence, and follow core §13.
 2. In one turn, in parallel:
    - `aggregate_table` over `crm_deals`: open deals by stage, count and total amount
    - `query_table` on `crm_deals`: open deals closing in the next 30 days, by amount
