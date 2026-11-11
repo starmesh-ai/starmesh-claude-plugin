@@ -1,0 +1,16 @@
+id: deal_outcome
+question: is a deal open, won or lost
+grain: [deal]
+rule: >
+  open: is_open is not false. Closed and won: is_won is true, or the stage names a
+  win. Closed and not won: lost (disqualified, no decision and churned count as
+  lost). One rule for the dashboard, the cards and the team views.
+won_stage_pattern: 'closed.?won|(?<![a-z])won(?![a-z])'
+not_won_pattern: '(not|never|no)\W+won'
+sources:
+  - crm_deals.is_open
+  - crm_deals.is_won     # Salesforce IsWon, Attio by stage title; null in the sample
+  - crm_deals.stage
+known_gap: a CRM whose won stage has no "won" in its name and no is_won reads as lost
+owner: sales-ops
+version: 1

@@ -97,7 +97,9 @@ then call `starmesh_status()` when they are back.
 Free accounts only get the sample. Answer from the labelled sample book and
 say once it is illustrative sample data, not their pipeline. Only if they ask
 for their own deals: connecting their own CRM and calls is on paid plans.
-Give `upgrade_url` (the plans page) as a markdown link; once upgraded they set
+With `plan_owner` in the status (the plan is their team's) there is no
+`upgrade_url`: tell them to ask the people in `plan_owner.ask` to upgrade, and
+don't link pricing. Otherwise give `upgrade_url` (the plans page) as a markdown link; once upgraded they set
 up at `onboarding_url`, then connect Starmesh in Claude again. The free plan
 has no time limit: never say it expires. When a tool result carries
 `upgrade_note`, end that answer with one short, friendly line inviting them to

@@ -1,0 +1,19 @@
+id: currency
+question: which currency an amount is in, and how amounts may be added
+grain: [deal]
+rule: >
+  Never add amounts in different currencies and never invent a rate. Group by
+  currency and show every group. A deal with no currency code takes the book's
+  one explicit code, or USD when no deal names one (single-currency CRMs, the
+  sample book). When the book names two or more codes, a deal with no code is
+  its own group, XXX ("unlabelled").
+sources:
+  - crm_deals.currency   # Salesforce: never queried (null). Attio: set only for currency objects. Sample: USD.
+default_currency: USD
+unlabelled_code: XXX
+base_currency: the most common explicit code in the book, ties alphabetical. Bars and sort orders use it.
+refuse_if:
+  - asked for one total across currencies (give the groups, or ask for a rate)
+known_gap: no FX conversion exists; a Salesforce multi-currency org reads as one unlabelled currency
+owner: sales-ops
+version: 1

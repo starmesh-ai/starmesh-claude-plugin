@@ -1,0 +1,9 @@
+id: deal_call_coverage
+question: has a deal been talked about recently
+grain: [deal]
+rule: none = no linked call; stale = last call older than stale_days; linked = a call within stale_days
+stale_days: 30
+sources:
+  - recordings linked to the deal (recording_deal_links)
+owner: sales-ops
+version: 1

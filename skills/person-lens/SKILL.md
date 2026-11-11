@@ -12,6 +12,10 @@ matches transcript speaker names to `crm_users.full_name`.
 
 Load `starmesh-core` in the same turn as your first data calls if it isn't loaded yet — don't wait on it.
 
+Visible people depend on the role (core §13): a Lead sees their team, an Admin
+everyone, a Rep only themselves. A person who doesn't resolve in `crm_users` may
+be outside the user's scope: say "not in the book I can show you".
+
 ## Steps
 1. `query_table("crm_users", ...)` → resolve the person
 2. Their owned deals via `crm_deals.owner_user_id`

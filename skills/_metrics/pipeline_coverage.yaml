@@ -1,0 +1,14 @@
+id: pipeline_coverage
+question: open pipeline against quota for a period
+grain: [owner, quarter]
+formula: sum(open pipeline amount) / ref_targets.quota, per currency (see currency), per fiscal quarter (see fiscal_calendar)
+sources:
+  - crm_deals      # rows are 2x duplicated, use aggregate_table
+  - ref_targets    # does not exist yet
+window: current fiscal quarter unless asked otherwise
+refuse_if:
+  - no quota row for that owner and period
+  - fewer than 3 open deals in the group
+known_gap: deals with null amount are excluded - report that count. Quotas are out of scope for v0.2.
+owner: sales-ops
+version: 1

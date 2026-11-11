@@ -1,0 +1,14 @@
+id: source_coverage
+question: how well Starmesh can see one person, so a quiet number is told apart from a missing one
+grain: [person]
+status_rule: >
+  unobserved: not signed in, or no meeting source connected. thin: meetings
+  connected but a gap to fix (calendar or email missing, stale sync, mostly
+  unlinked calls). connected: nothing to fix. There is no "healthy".
+stale_sync_days: 3          # last finished sync older than this is a gap
+unlinked_share_gap: 0.5     # more than this share of external calls not linked to a deal is a gap
+sources:
+  - connectors, connector_jobs (Postgres)
+  - recordings and deal links (BigQuery)
+owner: sales-ops
+version: 1

@@ -1,0 +1,11 @@
+id: win_rate
+question: share of closed deals that were won
+grain: [owner, team]
+formula: won / (won + lost), by count, over deals with outcome won or lost (see deal_outcome)
+min_closed: 3        # coaching cards and the rep scorecard judge a rate only from this many closed deals
+min_closed_listed: 1 # the reps table lists the rate from one closed deal and says nothing about it being thin
+amounts: none        # count-based, so currency does not enter
+refuse_if:
+  - fewer than min_closed closed deals in the group
+owner: sales-ops
+version: 1

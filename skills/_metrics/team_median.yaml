@@ -1,0 +1,11 @@
+id: team_median
+question: the middle value of a metric across the people in scope
+grain: [metric]
+formula: median of the per-person values; an even count takes the mean of the two middle values
+people: only people whose value exists; a person Starmesh cannot observe (see source_coverage) is left out of call-based medians, never counted as zero
+min_people: 1
+min_people_talk_share: 2   # one person has no team to be compared with
+refuse_if:
+  - the viewer is a Rep (scope is one person)
+owner: sales-ops
+version: 1

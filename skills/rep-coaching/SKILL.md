@@ -9,6 +9,13 @@ description: How a rep is performing and what to work on - talk ratio, discovery
 
 Load `starmesh-core` and `person-lens` together in one turn (skip any already loaded) — don't load one, then the other.
 
+Who you can coach (core §13): a Lead any rep on their team, an Admin any rep in
+the org, a Rep only themselves ("how am I doing"). A Rep asking about a
+colleague gets one sentence saying team views are for Leads and Admins. A Rep's
+"team median" does not exist (the book is one person): say so instead of
+comparing. Someone with no meetings connected shows thin numbers: say they are
+not connected, not that they are slow.
+
 Order (core §0b): CRM aggregates first, then `talk_share` (the one deliberate
 code-tool-over-primitive case), then calls to quote.
 
